@@ -1,51 +1,33 @@
 package hellojpa;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GeneratorType;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-//@TableGenerator(
-//	name = "MEMBER_SEQ_GENERATOR",
-//	table = "MY_SEQUENCES",
-//	pkColumnValue = "MEMBER_SEQ", allocationSize = 1)
-//@SequenceGenerator(name="member_seq_generator", sequenceName = "member_seq")
-//@Table(uniqueConstraints = "제약조건 이름")
+@Getter @Setter
 public class Member {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@GeneratedValue(strategy = GenerationType.TABLE,
-//		generator = "MEMBER_SEQ_GENERATOR")
+	@Id @GeneratedValue
+	@Column(name="MEMBER_ID")
 	private Long id;
 
-	@Column(name = "name", nullable = false)
-	private String username;
+	@Column(name="USERNAME")
+	private String userName;
 
-	public Member() {
+//	@Column(name="TEAM_ID")
+//	private Long teamId;
+
+	@ManyToOne(fetch = FetchType.LAZY) // 관계
+	@JoinColumn(name="TEAM_ID") // 조인하는 컬럼명
+	private Team team;
+
+	public void changeTeam(Team team){
+		this.team = team;
+		team.getMembers().add(this);
 	}
 
-	public Long getId() { return id; }
-	public void setId(Long id) { this.id = id; }
-	public String getUsername() { return username; }
-	public void setUsername(String username) { this.username = username; }
-
 }
-
-/*
-	private Integer age;
-
-	@Enumerated(EnumType.STRING)
-	private RoleType roleType;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date createdDate;
-
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date lastModifiedDate;
-
-	@Lob
-	private String description;
-
-	@Transient
-	private int temp;
-* */
