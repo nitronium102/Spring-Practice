@@ -12,6 +12,6 @@ public class Item {
 	@Column(name="ITEM_ID")
 	private Long id;
 	private String name;
-	private Integer price;
-	private Integer stockQuantity;
+	private int price;
+	private int stockQuantity;
 }
