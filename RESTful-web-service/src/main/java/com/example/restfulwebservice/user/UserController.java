@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -36,7 +37,10 @@ public class UserController {
 	}
 
 	@PostMapping("/users")
-	public ResponseEntity<User> createUser(@RequestBody User user) { // @RequestBody : 현재 variable이 requestBody 형식으로 들어옴을 알림
+	// JDK에 포함된 API와 hibernate library에 포함된 validation 기능
+	// @Valid : 사용자 추가할 때 validation 검증
+	// @RequestBody : 현재 variable이 requestBody 형식으로 들어옴을 알림
+	public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 		User savedUser = service.save(user);
 
 		// ServletUriComponentBuilder -> 현재 요청의 URI를 얻을 수 있다.

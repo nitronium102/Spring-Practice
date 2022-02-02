@@ -14,9 +14,9 @@ public class UserDaoService {
 	private static int usersCount = 3;
 
 	static {
-		users.add(new User(1, "minji", true, new Date()));
-		users.add(new User(2, "nitro", false, new Date()));
-		users.add(new User(3, "ewha", false, new Date()));
+		users.add(new User(1, "minji", "1222", new Date()));
+		users.add(new User(2, "nitro", "1233", new Date()));
+		users.add(new User(3, "ewha", "1234", new Date()));
 	}
 
 	// 전체 조회
