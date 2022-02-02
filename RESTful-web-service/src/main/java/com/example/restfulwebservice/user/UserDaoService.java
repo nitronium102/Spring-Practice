@@ -54,12 +54,13 @@ public class UserDaoService {
 		return null;
 	}
 
-	public User updateById(int id){
-		Iterator<User> iterator = users.iterator();
-		while(iterator.hasNext()){
-			User user = iterator.next();
-			if (user.getId() == id){
-				return user;
+	public User updateById(int id, User user){
+		for (User storedUser : users){
+			if (storedUser.getId() == id){
+				storedUser.setName(user.getName());
+				storedUser.setPassword(user.getPassword());
+
+				return storedUser;
 			}
 		}
 		return null;

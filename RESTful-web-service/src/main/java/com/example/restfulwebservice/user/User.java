@@ -10,6 +10,6 @@ import java.util.Date;
 public class User {
 	private Integer id;
 	private String name;
-	private Boolean isPass;
+	private String password;
 	private Date joinDate;
 }

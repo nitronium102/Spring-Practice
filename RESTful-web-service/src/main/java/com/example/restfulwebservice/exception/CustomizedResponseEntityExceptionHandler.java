@@ -12,13 +12,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import java.util.Date;
 
 @RestController
-@ControllerAdvice
+@ControllerAdvice // 모든 @Controller가 실행되기 전에 실행됨 -> 전역 발생 예외 처리 가능
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@ExceptionHandler(Exception.class)
 	public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
 		ExceptionResponse exceptionResponse =
 			new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
+		// ResponseEntity : http status code와 전송하고자 하는 데이터를 함께 전송
 		return new ResponseEntity(exceptionResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
