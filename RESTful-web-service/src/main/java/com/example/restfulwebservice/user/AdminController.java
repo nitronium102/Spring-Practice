@@ -40,8 +40,8 @@ public class AdminController {
 		return mapping;
 	}
 
-	// GET /adimn/users/1 -> /admin/v1/users/1
-	@GetMapping("/v1/users/{id}")
+	// 데이터 뒤에 버전에 대한 정보가 추가적으로 전달되어야 하기 때문에 URI 뒤에 "/"가 붙는다
+	@GetMapping(value = "/users/{id}/", params = "version=1")
 	// setFilters나 setSerialView를 사용 시 꼭 MappingJacksonValue 타입으로 감싸서 반환
 	public MappingJacksonValue retrieveUserV1(@PathVariable int id) { // 관리자 : 유저의 정보를 모두 가져올 수 있도록!
 		User user = service.findOne(id);
@@ -62,7 +62,7 @@ public class AdminController {
 		return mapping;
 	}
 
-	@GetMapping("/v2/users/{id}")
+	@GetMapping(value = "/users/{id}/", params = "version=2")
 	public MappingJacksonValue retrieveUserV2(@PathVariable int id) {
 		User user = service.findOne(id);
 
