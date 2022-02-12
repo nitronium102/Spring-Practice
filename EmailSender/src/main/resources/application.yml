@@ -1,0 +1,13 @@
+#mail connect
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: {MY_GMAIL_ADDRESS}
+    password: {Gmail_APPICATION_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
