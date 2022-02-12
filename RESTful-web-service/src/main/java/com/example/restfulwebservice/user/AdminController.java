@@ -40,7 +40,11 @@ public class AdminController {
 		return mapping;
 	}
 
-	@GetMapping(value = "/users/{id}", headers = "X-API-VERSION=1")
+	// 제공하고자 하는 MIME 타입 지정
+	// 기존에 없던 새로운 값 -> application
+	// 버전 이름 : appv1
+	// 전달 시키조자 하는 타입 : json
+	@GetMapping(value = "/users/{id}", produces = "application/vnd.company.appv1+json")
 	// setFilters나 setSerialView를 사용 시 꼭 MappingJacksonValue 타입으로 감싸서 반환
 	public MappingJacksonValue retrieveUserV1(@PathVariable int id) { // 관리자 : 유저의 정보를 모두 가져올 수 있도록!
 		User user = service.findOne(id);
@@ -61,7 +65,7 @@ public class AdminController {
 		return mapping;
 	}
 
-	@GetMapping(value = "/users/{id}", headers = "X-API-VERSION=2")
+	@GetMapping(value = "/users/{id}", produces = "application/vnd.company.appv2+json")
 	public MappingJacksonValue retrieveUserV2(@PathVariable int id) {
 		User user = service.findOne(id);
 
