@@ -25,8 +25,6 @@ public class LoginController {
 
     @PostMapping("/signup")
     public Long signUp(@RequestBody LoginReqDto loginReqDto) {
-        String encoded = passwordEncoder.encode(loginReqDto.getPassword());
-        loginReqDto.setPassword(encoded);
         return service.joinUser(loginReqDto);
     }
 

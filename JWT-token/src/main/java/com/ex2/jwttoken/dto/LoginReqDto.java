@@ -22,8 +22,4 @@ public class LoginReqDto {
         this.password = password;
     }
 
-    public void setPassword(String encoded) {
-        this.password = encoded;
-    }
-
 }
