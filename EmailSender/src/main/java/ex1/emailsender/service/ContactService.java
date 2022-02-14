@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Service
-@Component
 public class ContactService {
 
 	private final ContactRepository contactRepository;
