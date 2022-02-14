@@ -3,6 +3,7 @@ package ex1.emailsender;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,6 +14,7 @@ import javax.mail.internet.MimeMessage;
 import java.io.InputStream;
 
 @SpringBootApplication
+@Configuration
 public class EmailSenderApplication {
 
 	@Bean
