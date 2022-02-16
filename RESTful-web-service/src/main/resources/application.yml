@@ -13,6 +13,11 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+  # spring security 설정 -> id, pw가 고정되어 있으므로 적절하지 않다
+  security:
+    user:
+      name: nitro
+      password: password1234
 
 # actuator 설정
 management:
