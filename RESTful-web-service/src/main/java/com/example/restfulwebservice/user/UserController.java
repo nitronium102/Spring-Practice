@@ -1,5 +1,7 @@
 package com.example.restfulwebservice.user;
 
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -7,6 +9,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+
+// static method를 import하면 해당하는 메소드를 쓰기 위해 긴 클래스명을 사용하지 않아도 된다!
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
 public class UserController {
@@ -27,13 +33,24 @@ public class UserController {
 	// GET users/10 -> String
 	// 기본은 String이지만 매개변수로 int 받으면 자동 변경
 	@GetMapping("/users/{id}")
-	public User retrieveUser(@PathVariable int id) {
+	public ResponseEntity<EntityModel<User>> retrieveUser(@PathVariable int id) {
 		User user = service.findOne(id);
 		if (user == null){
 			// 직접 상황에 맞는 예외 클래스 작성
 			throw new UserNotFoundException(String.format("ID[%s] is not found", id));
 		}
-		return user;
+
+		// HATEOAS
+		EntityModel<User> entityModel = EntityModel.of(user); // 매개변수에 유저 객체값 넣음
+		// 유저 객체를 반환시킬 때 유저가 사용할 수 있는 추가적인 정보(링크)를 하이퍼미디어 형식으로 넣어놓기
+		// methodOn(연결시킬 메소드)
+		// -> this.getClass()가 가지고 있는 데이터 중에서 retrieveAllUsers() 메소드를 연동
+		WebMvcLinkBuilder linkTo = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+
+		// retrieveAllUsers() 메소드를 "all-users"로 href 연결
+		entityModel.add(linkTo.withRel("all-users")); // resource 객체에 링크 추가
+
+		return ResponseEntity.ok(entityModel);
 	}
 
 	@PostMapping("/users")

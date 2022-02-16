@@ -15,7 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 //@JsonIgnoreProperties(value={"password", "ssn"}) // 클래스 단위로 필터링
 @NoArgsConstructor // 디폴트 생성자 생성
-@JsonFilter("UserInfo") // 부여된 필터값은 controller나 service 클래스에서 사용된다
+//@JsonFilter("UserInfo") // 부여된 필터값은 controller나 service 클래스에서 사용된다
 public class User {
 	private Integer id;
 

@@ -10,8 +10,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 
+import javax.annotation.PostConstruct;
 import javax.mail.internet.MimeMessage;
 import java.io.InputStream;
+import java.util.TimeZone;
 
 @SpringBootApplication
 @Configuration
@@ -20,6 +22,11 @@ public class EmailSenderApplication {
 	@Bean
 	public JavaMailSenderImpl javaMailSender(){
 		return new JavaMailSenderImpl();
+	}
+
+	@PostConstruct
+	public void started(){
+		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Seoul"));
 	}
 
 	public static void main(String[] args) {
