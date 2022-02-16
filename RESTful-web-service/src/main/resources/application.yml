@@ -13,3 +13,10 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+# actuator 설정
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
