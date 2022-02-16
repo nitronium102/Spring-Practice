@@ -79,6 +79,15 @@
         	<groupId>org.springframework.boot</groupId>
         	<artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!--HAL-BROWSER/EXPLORER-->
+        <!--response 객체에 부가적인 정보를 제공해준다 -->
+        <!--링크 정보를 json 형태로 표현할 수 있는 표준 -->
+        <!--장점: rest 자원을 표시하기 위한 자료구조를 만들지 않아도 HATEOAS 기능을 사용할 수 있다  -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-rest-hal-explorer</artifactId>
+            <version>3.5.1</version>
+        </dependency>
 	</dependencies>
 
 	<build>
