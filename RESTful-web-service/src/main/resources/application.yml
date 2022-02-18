@@ -14,11 +14,26 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
   # spring security 설정 -> id, pw가 고정되어 있으므로 적절하지 않다
-  security:
-    user:
-      name: nitro
-      password: password1234
-
+#  security:
+#    user:
+#      name: nitro
+#      password: password1234
+  # jpa
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    defer-datasource-initialization: true
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+        path: /h2-console
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb
 # actuator 설정
 management:
   endpoints:
