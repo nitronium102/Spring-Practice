@@ -1,5 +1,8 @@
-package com.example.restfulwebservice.user;
+package com.example.restfulwebservice.user.controller;
 
+import com.example.restfulwebservice.user.service.UserDaoService;
+import com.example.restfulwebservice.exception.UserNotFoundException;
+import com.example.restfulwebservice.user.domain.User;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;

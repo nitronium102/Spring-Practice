@@ -1,5 +1,6 @@
-package com.example.restfulwebservice.user;
+package com.example.restfulwebservice.user.domain;
 
+import com.example.restfulwebservice.user.domain.Post;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;

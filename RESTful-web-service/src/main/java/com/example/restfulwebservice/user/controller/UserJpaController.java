@@ -1,6 +1,10 @@
-package com.example.restfulwebservice.user;
+package com.example.restfulwebservice.user.controller;
 
-import io.swagger.models.Response;
+import com.example.restfulwebservice.exception.UserNotFoundException;
+import com.example.restfulwebservice.user.repository.UserRepository;
+import com.example.restfulwebservice.user.domain.Post;
+import com.example.restfulwebservice.user.domain.User;
+import com.example.restfulwebservice.user.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
@@ -8,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.swing.text.html.Option;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
