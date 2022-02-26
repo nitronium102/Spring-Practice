@@ -1,4 +1,4 @@
-package com.nitro.book.springboot.dto;
+package com.nitro.book.springboot.web.dto;
 
 import org.junit.jupiter.api.Test;
 

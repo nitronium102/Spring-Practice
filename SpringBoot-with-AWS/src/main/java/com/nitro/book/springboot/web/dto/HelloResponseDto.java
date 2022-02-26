@@ -1,7 +1,6 @@
-package com.nitro.book.springboot.dto;
+package com.nitro.book.springboot.web.dto;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Getter
