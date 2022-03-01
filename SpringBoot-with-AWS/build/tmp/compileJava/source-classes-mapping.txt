@@ -1,12 +1,19 @@
 com/nitro/book/springboot/domain/posts/PostsRepository.java
  com.nitro.book.springboot.domain.posts.PostsRepository
-com/nitro/book/springboot/dto/HelloResponseDto.java
- com.nitro.book.springboot.dto.HelloResponseDto
-com/nitro/book/springboot/web/HelloController.java
- com.nitro.book.springboot.web.HelloController
+com/nitro/book/springboot/Application.java
+ com.nitro.book.springboot.Application
 com/nitro/book/springboot/domain/posts/Posts.java
  com.nitro.book.springboot.domain.posts.Posts
  com.nitro.book.springboot.domain.posts.Posts$1
  com.nitro.book.springboot.domain.posts.Posts$PostsBuilder
-com/nitro/book/springboot/Application.java
- com.nitro.book.springboot.Application
+com/nitro/book/springboot/web/dto/HelloResponseDto.java
+ com.nitro.book.springboot.web.dto.HelloResponseDto
+com/nitro/book/springboot/web/dto/PostsSaveRequestDto.java
+ com.nitro.book.springboot.web.dto.PostsSaveRequestDto
+ com.nitro.book.springboot.web.dto.PostsSaveRequestDto$PostsSaveRequestDtoBuilder
+com/nitro/book/springboot/web/HelloController.java
+ com.nitro.book.springboot.web.HelloController
+com/nitro/book/springboot/service/posts/PostsService.java
+ com.nitro.book.springboot.service.posts.PostsService
+com/nitro/book/springboot/web/PostsApiController.java
+ com.nitro.book.springboot.web.PostsApiController
