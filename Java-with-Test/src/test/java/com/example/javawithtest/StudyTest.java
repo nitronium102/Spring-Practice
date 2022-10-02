@@ -16,25 +16,15 @@ import static org.junit.jupiter.api.Assumptions.assumingThat;
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
 
-	@Test
-	@EnabledOnOs({OS.WINDOWS, OS.MAC})
-	@EnabledIfEnvironmentVariable(named = "TEST_ENV", matches = "local")
+	@FastTest // 오타를 줄이는 용도로 사용가능
+	@DisplayName("스터디 만들기 fast")
 	void create_new_study() { // java reflection을 사용하면 private, default인 메소드에서 접근 가능
 
 		String test_env = System.getenv("TEST_ENV");
-		assumeTrue("LOCAL".equalsIgnoreCase(test_env));
-		assumingThat("Local".equalsIgnoreCase(test_env), () -> {
-
-		});
-
-		assumingThat("nitronium".equalsIgnoreCase(test_env), () -> {
-
-		});
 	}
 
-	@Test
-	@Disabled
-	@DisplayName("스터디 만들기2")
+	@SlowTest
+	@DisplayName("스터디 만들기 slow")
 	void create1() { // java reflection을 사용하면 private, default인 메소드에서 접근 가능
 		System.out.println("create2");
 	}
