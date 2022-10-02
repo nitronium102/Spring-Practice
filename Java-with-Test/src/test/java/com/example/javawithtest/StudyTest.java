@@ -1,41 +1,35 @@
 package com.example.javawithtest;
 
+import jdk.jfr.Enabled;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 
 import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest {
 
 	@Test
+	@EnabledOnOs({OS.WINDOWS, OS.MAC})
+	@EnabledIfEnvironmentVariable(named = "TEST_ENV", matches = "local")
 	void create_new_study() { // java reflection을 사용하면 private, default인 메소드에서 접근 가능
 
-		Study actual = new Study(10);
-		assertThat(actual.getLimit().isGreaterThan(0));
+		String test_env = System.getenv("TEST_ENV");
+		assumeTrue("LOCAL".equalsIgnoreCase(test_env));
+		assumingThat("Local".equalsIgnoreCase(test_env), () -> {
 
-		// ThreadLocal을 사용하는 경우 다른 thread와 공유가 되지 않기 때문에 예상치 못한 결과가 발생할 수 있음
-		assertTimeoutPreemptively(Duration.ofSeconds(10), () -> {
-			new Study(10);
-			Thread.sleep(300);
 		});
 
-		IllegalArgumentException exception =
-				assertThrows(IllegalArgumentException.class, () -> new Study(-10));
-		String message = exception.getMessage();
-		assertEquals("limit은 0보다 커야 한다.", exception.getMessage());
+		assumingThat("nitronium".equalsIgnoreCase(test_env), () -> {
 
-		assertAll(
-				() -> assertNotNull(study),
-				// expected, actual, message 순
-				// lambda 식으로 만들면 문자열 연산을 필요할 때만 하게 된다
-				() -> assertEquals(StudyStatus.DRAFT, study.getStatus(),
-					() -> "스터디를 처음 만들면 " + StudyStatus.DRAFT + "상태다."),
-				() -> assertTrue(study.getLimit() > 0, "스터디 최대 참석 가능 인원은 0보다 커야 한다")
-		);
-		System.out.println("create");
+		});
 	}
 
 	@Test
