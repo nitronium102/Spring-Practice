@@ -41,6 +41,13 @@ public class SecurityConfig {
 		// httpBasic은 브라우저가 팝업창을 이용해서 사용자 인증을 진행
 		http.httpBasic().disable();
 
+		// Exception 가로채기 (원래는 스프링에서 exception 발생하면 가로챔)
+		http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
+			// response.setContentType("application/json; charset=utf-8");
+			response.setStatus(403);
+			response.getWriter().println("error");
+		});
+
 		http.authorizeRequests()
 			.antMatchers("/api/s/**").authenticated()
 			.antMatchers("/api/admin/**").hasRole("" + UserEnum.ADMIN) // 최근 공식문서에서는 ROLE_ 안 붙여도 됨
