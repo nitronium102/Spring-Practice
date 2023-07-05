@@ -12,7 +12,11 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import shop.mtcoding.bank.domain.user.UserEnum;
+import shop.mtcoding.bank.dto.ResponseDto;
+import shop.mtcoding.bank.util.CustomResponseUtil;
 
 @Configuration // Ioc에 설정파일로 bean 등록
 public class SecurityConfig {
@@ -43,9 +47,7 @@ public class SecurityConfig {
 
 		// Exception 가로채기 (원래는 스프링에서 exception 발생하면 가로챔)
 		http.exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
-			// response.setContentType("application/json; charset=utf-8");
-			response.setStatus(403);
-			response.getWriter().println("error");
+			CustomResponseUtil.unAuthentication(response, "로그인을 진행해주세요.");
 		});
 
 		http.authorizeRequests()
