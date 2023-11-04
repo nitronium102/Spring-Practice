@@ -51,7 +51,7 @@ public class DistributedLockApp {
 	}
 
 	private String createLockKey(MethodSignature signature, ProceedingJoinPoint joinPoint, DistributedLock distributedLock) {
-		return REDISSION_LOCK_PREFIX + CustomSpringELParser.getDynamicValue(signature.getParameterNames(), joinPoint.getArgs(), distributedLock.key());;
+		return REDISSION_LOCK_PREFIX + CustomSpringELParser.getDynamicValue(signature.getParameterNames(), joinPoint.getArgs(), distributedLock.key());
 	}
 
 	private boolean acquireLock(RLock rLock, DistributedLock distributedLock) throws InterruptedException {
