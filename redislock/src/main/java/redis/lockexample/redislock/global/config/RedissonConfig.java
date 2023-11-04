@@ -1,4 +1,4 @@
-package redis.lockexample.redislock.global;
+package redis.lockexample.redislock.global.config;
 
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
